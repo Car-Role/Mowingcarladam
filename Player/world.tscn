@@ -1,0 +1,127 @@
+[gd_scene load_steps=4 format=3 uid="uid://ce4u5lc0qamf4"]
+
+[ext_resource type="PackedScene" uid="uid://cblvqo737x11j" path="res://Player/spinning_blade.tscn" id="1_7u1l3"]
+[ext_resource type="Texture2D" uid="uid://rgdak2xo8idt" path="res://Textures/brown_dirt.jpg" id="2_f5evc"]
+[ext_resource type="Script" path="res://Player/GrassSpawner.gd" id="3_lydyu"]
+
+[node name="World" type="Node2D"]
+
+[node name="SpinningBlade" parent="." instance=ExtResource("1_7u1l3")]
+unique_name_in_owner = true
+z_index = 100
+position = Vector2(450, 450)
+
+[node name="BrownDirt" type="Sprite2D" parent="."]
+z_index = -4
+texture_repeat = 2
+position = Vector2(460.875, 454.625)
+scale = Vector2(0.634833, 0.6365)
+texture = ExtResource("2_f5evc")
+region_enabled = true
+region_rect = Rect2(576, 300, 1500, 1500)
+
+[node name="GrassSpawner" type="Node2D" parent="."]
+script = ExtResource("3_lydyu")
+
+[node name="GrassSpawnTimer" type="Timer" parent="GrassSpawner"]
+one_shot = true
+autostart = true
+
+[node name="GUI" type="Control" parent="."]
+z_index = 999
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Money" type="Label" parent="GUI"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 100
+text = "$0"
+
+[node name="Shop" type="Button" parent="GUI"]
+layout_mode = 0
+offset_left = 788.0
+offset_top = 12.0
+offset_right = 888.0
+offset_bottom = 62.0
+text = "Shop"
+
+[node name="ShopOptions" type="GridContainer" parent="GUI"]
+layout_mode = 0
+offset_left = 70.0
+offset_top = 150.0
+offset_right = 839.0
+offset_bottom = 950.0
+columns = 2
+
+[node name="Size" type="Button" parent="GUI/ShopOptions"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 40
+text = "Size : 0.5
+$5 : +5%"
+
+[node name="Damage" type="Button" parent="GUI/ShopOptions"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 40
+text = "Damage : 1
+$5 : +5%"
+
+[node name="idleSpinSpeed" type="Button" parent="GUI/ShopOptions"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 40
+text = "IdleSpinSpeed : 1
+$5 : +5%"
+
+[node name="SpinSpeed" type="Button" parent="GUI/ShopOptions"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 40
+text = "ActiveSpinSpeed : 1
+$5 : +5%"
+
+[node name="GrassSpawnRate" type="Button" parent="GUI/ShopOptions"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 40
+text = "GrassSpawnRate : 1
+$5 : +5%"
+
+[node name="BladeCount" type="Button" parent="GUI/ShopOptions"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 40
+text = "BladeCount : 1
+$5 : +5%"
+
+[node name="GrassHealth" type="Button" parent="GUI/ShopOptions"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 40
+text = "GrassHealth : 1
+$5 : +5%"
+
+[node name="Button8" type="Button" parent="GUI/ShopOptions"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 40
+text = "Size : 1
+$5 : +5%"
+
+[connection signal="area_entered" from="SpinningBlade" to="SpinningBlade" method="_on_area_entered"]
+[connection signal="timeout" from="GrassSpawner/GrassSpawnTimer" to="GrassSpawner" method="_on_grass_spawn_timer_timeout"]
+[connection signal="pressed" from="GUI/Shop" to="SpinningBlade" method="_on_shop_pressed"]
+[connection signal="pressed" from="GUI/ShopOptions/Size" to="SpinningBlade" method="_on_size_pressed"]
+[connection signal="pressed" from="GUI/ShopOptions/Damage" to="SpinningBlade" method="_on_damage_pressed"]
+[connection signal="pressed" from="GUI/ShopOptions/idleSpinSpeed" to="SpinningBlade" method="_on_idle_spin_speed_pressed"]
+[connection signal="pressed" from="GUI/ShopOptions/SpinSpeed" to="SpinningBlade" method="_on_spin_speed_pressed"]
+[connection signal="pressed" from="GUI/ShopOptions/GrassSpawnRate" to="SpinningBlade" method="_on_grass_spawn_rate_pressed"]
+[connection signal="pressed" from="GUI/ShopOptions/BladeCount" to="SpinningBlade" method="_on_blade_count_pressed"]
+[connection signal="pressed" from="GUI/ShopOptions/GrassHealth" to="SpinningBlade" method="_on_grass_health_pressed"]

@@ -1,10 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://dqfiad506k43y"]
+[gd_scene load_steps=4 format=3 uid="uid://dqfiad506k43y"]
 
 [ext_resource type="Script" path="res://Player/test_node.gd" id="1_4dc2b"]
 [ext_resource type="Texture2D" uid="uid://sqrlstwxrptv" path="res://Textures/Items/Weapons/sword.png" id="1_tvgcu"]
 [ext_resource type="Script" path="res://Player/Blade.gd" id="2_smqke"]
-[ext_resource type="Texture2D" uid="uid://d0yt00r5drq0r" path="res://Textures/Items/Gems/Gem_green.png" id="4_q0wts"]
-[ext_resource type="Script" path="res://Player/Center.gd" id="5_oqchm"]
 
 [node name="LawnBlade" type="Node2D"]
 position = Vector2(-5, 8)
@@ -18,8 +16,3 @@ position = Vector2(389, 191)
 scale = Vector2(10.4375, 9.34375)
 texture = ExtResource("1_tvgcu")
 script = ExtResource("2_smqke")
-
-[node name="Center" type="Sprite2D" parent="."]
-position = Vector2(506, 292)
-texture = ExtResource("4_q0wts")
-script = ExtResource("5_oqchm")

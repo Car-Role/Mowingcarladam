@@ -1,0 +1,45 @@
+[gd_scene load_steps=5 format=3 uid="uid://cblvqo737x11j"]
+
+[ext_resource type="Script" path="res://SpinningBlade.gd" id="1_8qen6"]
+[ext_resource type="Texture2D" uid="uid://1hxuly761au0" path="res://Textures/scythe.png" id="2_fmxld"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ohrdf"]
+size = Vector2(214.075, 68.6218)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jgnvi"]
+size = Vector2(57.0928, 310.876)
+
+[node name="SpinningBlade" type="Area2D" groups=["player"]]
+rotation = 6.28319
+script = ExtResource("1_8qen6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(122.5, -173.5)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("2_fmxld")
+offset = Vector2(5, 5)
+
+[node name="MouseCheck" type="Area2D" parent="."]
+
+[node name="MouseCheck" type="CollisionShape2D" parent="MouseCheck"]
+position = Vector2(157.5, -308)
+rotation = 0.610865
+shape = SubResource("RectangleShape2D_ohrdf")
+
+[node name="BladeCollision" type="CollisionShape2D" parent="."]
+position = Vector2(157.5, -308)
+rotation = 0.610865
+shape = SubResource("RectangleShape2D_ohrdf")
+
+[node name="HandleCollision" type="CollisionShape2D" parent="."]
+position = Vector2(97.763, -121.279)
+rotation = 0.698132
+shape = SubResource("RectangleShape2D_jgnvi")
+
+[connection signal="area_entered" from="." to="MouseCheck" method="_on_spinning_blade_area_entered"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="mouse_shape_entered" from="." to="." method="_on_mouse_shape_entered"]
+[connection signal="mouse_shape_exited" from="." to="." method="_on_mouse_shape_exited"]
+[connection signal="mouse_entered" from="MouseCheck" to="." method="_on_blade_mouse_entered"]
+[connection signal="mouse_exited" from="MouseCheck" to="." method="_on_blade_mouse_exited"]
